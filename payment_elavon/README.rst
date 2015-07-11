@@ -54,6 +54,8 @@ Contributors
 
 * Rafael Blasco <rafabn@antiun.com>
 * Antonio Espinosa <antonioea@antiun.com>
+* Carlos Dauden <carlos@incaser.net>
+* Sergio Teruel <sergio@incaser.net>
 
 Maintainer
 ----------

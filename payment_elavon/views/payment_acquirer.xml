@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="acquirer_form_elavon" model="ir.ui.view">
+            <field name="name">acquirer.form.elavon</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="acquirer_display"]' position='after'>
+                    <group attrs="{'invisible': [('provider', '!=', 'elavon')]}">
+                        <field name="elavon_merchant_id" attrs="{'required': [('provider', '=', 'elavon')]}"/>
+                        <field name="elavon_account" attrs="{'required': [('provider', '=', 'elavon')]}"/>
+                        <field name="elavon_currency" attrs="{'required': [('provider', '=', 'elavon')]}"/>
+                        <field name="elavon_auto_settle_flag" attrs="{'required': [('provider', '=', 'elavon')]}"/>
+                        <field name="elavon_return_tss" attrs="{'required': [('provider', '=', 'elavon')]}"/>
+                        <field name="elavon_secret_key" attrs="{'required': [('provider', '=', 'elavon')]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="transaction_form_elavon" model="ir.ui.view">
+            <field name="name">acquirer.transaction.form.elavon</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//notebook' position='inside'>
+                    <page string="Elavon TX Details">
+                        <group>
+                            <field name="elavon_txnid"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

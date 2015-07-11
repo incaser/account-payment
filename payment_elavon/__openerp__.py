@@ -21,20 +21,23 @@
 #
 ##############################################################################
 {
-    'name': "Sample Addon",
-    'category': 'Personalization',
+    'name': "Elavon Payment Acquirer",
+    'category': 'website',
     'version': '1.0',
     'depends': [
-        'base',
+        'payment',
     ],
     'external_dependencies': {},
     'data': [
+        'views/payment_elavon.xml',
+        'views/payment_acquirer.xml'
     ],
     'qweb': [
     ],
     'js': [
     ],
     'author': 'Antiun Ingeniería S.L., '
+              'Incaser Informatica S.L.'
               'Odoo Community Association (OCA)',
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',

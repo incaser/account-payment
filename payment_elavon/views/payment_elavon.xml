@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <template id="elavon_acquirer_button">
+            <form t-if="acquirer" t-att-action="tx_url" method="post" target="_self">
+				<input type="hidden" name="MERCHANT_ID" t-att-value="tx_values['MERCHANT_ID']"/>
+				<input type="hidden" name="ORDER_ID" t-att-value="tx_values['ORDER_ID']"/>
+				<input type="hidden" name="ACCOUNT" t-att-value="tx_values['ACCOUNT']"/>
+				<input type="hidden" name="AMOUNT" t-att-value="tx_values['AMOUNT']"/>
+				<input type="hidden" name="CURRENCY" t-att-value="tx_values['CURRENCY']"/>
+				<input type="hidden" name="TIMESTAMP" t-att-value="tx_values['TIMESTAMP']"/>
+				<input type="hidden" name="SHA1HASH" t-att-value="tx_values['SHA1HASH']"/>
+				<input type="hidden" name="AUTO_SETTLE_FLAG" t-att-value="tx_values['AUTO_SETTLE_FLAG']"/>
+				<input type="hidden" name="COMMENT1" t-att-value="tx_values['COMMENT1']"/>
+				<input type="hidden" name="COMMENT2" t-att-value="tx_values['COMMENT2']"/>
+				<input type="hidden" name="RETURN_TSS" t-att-value="tx_values['RETURN_TSS']"/>
+				<input type="hidden" name="SHIPPING_CODE" t-att-value="tx_values['SHIPPING_CODE']"/>
+				<input type="hidden" name="SHIPPING_CO" t-att-value="tx_values['SHIPPING_CO']"/>
+				<input type="hidden" name="BILLING_CODE" t-att-value="tx_values['BILLING_CODE']"/>
+				<input type="hidden" name="BILLING_CO" t-att-value="tx_values['BILLING_CO']"/>
+				<input type="hidden" name="CUST_NUM" t-att-value="tx_values['CUST_NUM']"/>
+				<input type="hidden" name="VAR_REF" t-att-value="tx_values['VAR_REF']"/>
+                <!-- submit -->
+                <button type="submit" width="100px" t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="/payment_elavon/static/src/img/elavon_icon.png"/>
+                    <span t-if="submit_txt">
+                        <t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/>
+                    </span>
+                </button>
+            </form>
+        </template>
+
+    </data>
+</openerp>
