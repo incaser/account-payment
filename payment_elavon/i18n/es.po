@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_elavon
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-14 10:13+0000\n"
+"PO-Revision-Date: 2015-07-14 12:20+0100\n"
+"Last-Translator: Sergio Teruel <sergio@incaser.es>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: payment_elavon
+#: field:payment.acquirer,elavon_account:0
+msgid "Account"
+msgstr ""
+
+#. module: payment_elavon
+#: field:payment.acquirer,elavon_auto_settle_flag:0
+msgid "Auto Settle"
+msgstr ""
+
+#. module: payment_elavon
+#: field:payment.acquirer,elavon_currency:0
+msgid "Currency"
+msgstr ""
+
+#. module: payment_elavon
+#: view:payment.transaction:payment_elavon.transaction_form_elavon
+msgid "Elavon TX Details"
+msgstr ""
+
+#. module: payment_elavon
+#: selection:payment.acquirer,elavon_currency:0
+msgid "Euro"
+msgstr "Euro"
+
+#. module: payment_elavon
+#: selection:payment.acquirer,elavon_currency:0
+msgid "Hong Kong Dollar"
+msgstr "Dolar De Hong Kong"
+
+#. module: payment_elavon
+#: selection:payment.acquirer,elavon_currency:0
+msgid "Japanese Yen"
+msgstr "Yen Japonés"
+
+#. module: payment_elavon
+#: field:payment.acquirer,elavon_merchant_id:0
+msgid "Merchant ID"
+msgstr ""
+
+#. module: payment_elavon
+#: code:addons/payment_elavon/models/payment_elavon.py:225
+#, python-format
+msgid "Ok: %s"
+msgstr ""
+
+#. module: payment_elavon
+#: model:ir.model,name:payment_elavon.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Método de pago"
+
+#. module: payment_elavon
+#: model:ir.model,name:payment_elavon.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transacción de pago"
+
+#. module: payment_elavon
+#: selection:payment.acquirer,elavon_currency:0
+msgid "Pound Sterling"
+msgstr "Libra Esterlina"
+
+#. module: payment_elavon
+#: field:payment.acquirer,elavon_return_tss:0
+msgid "Return TSS"
+msgstr ""
+
+#. module: payment_elavon
+#: field:payment.acquirer,elavon_secret_key:0
+msgid "Secret Key"
+msgstr "Clave secreta"
+
+#. module: payment_elavon
+#: help:payment.acquirer,elavon_merchant_id:0
+msgid ""
+"Supplied by your payment provider – note this is not the merchant number "
+"supplied by your bank."
+msgstr ""
+"Proporcionado por tu proveedor de pagos Elavon. Ten en cuenta que no se "
+"trata del número de comercio proporcionado por el banco."
+
+#. module: payment_elavon
+#: selection:payment.acquirer,elavon_currency:0
+msgid "Swedish Krona"
+msgstr "Corona sueca"
+
+#. module: payment_elavon
+#: selection:payment.acquirer,elavon_currency:0
+msgid "Swiss Franc"
+msgstr "Franco suizo"
+
+#. module: payment_elavon
+#: help:payment.acquirer,elavon_account:0
+msgid ""
+"The sub-account to use for this transaction. If not present, the default sub-"
+"account, ‘internet’, will be used."
+msgstr ""
+"La subcuenta que se va a utilizar para esta transacción. Si no existe, se "
+"utiliza la predeterminada."
+
+#. module: payment_elavon
+#: field:payment.transaction,elavon_txnid:0
+msgid "Transaction ID"
+msgstr ""
+
+#. module: payment_elavon
+#: selection:payment.acquirer,elavon_currency:0
+msgid "US Dollar"
+msgstr "Dolar americano"
+
+#. module: payment_elavon
+#: help:payment.acquirer,elavon_return_tss:0
+msgid ""
+"Used to signify whether or not you want a Transaction Suitability Score for "
+"this transaction. Can be “0” for no and “1” for yes. To maximise the "
+"usefulness of the realscore you should also supply the next 6 fields. See "
+"below for more on realscore."
+msgstr ""
+"Se utiliza para indicar si se desea obtener la calificación de idoneidad de "
+"la transacción o no. Será «0» en caso negativo y «1» en caso afirmativo. "
+"Para sacar el máximo partido de Prevención del fraude, también deberás "
+"proporcionar los 7 campos siguientes."
+
+#. module: payment_elavon
+#: help:payment.acquirer,elavon_auto_settle_flag:0
+msgid ""
+"Used to signify whether or not you wish the transaction to be captured in "
+"the next batch or not. If set to “1” and assuming the transaction is "
+"authorised then it will automatically be settled in the next batch. If set "
+"to “0” then the merchant must use the realcontrol application to manually "
+"settle the transaction. This option can be used if a merchant wishes to "
+"delay the payment until after the goods have been shipped.Transactions can "
+"be settled for up to 115% of the original amount. "
+msgstr ""
+"Se utiliza para indicar si se desea que las transacciones se cobren en el "
+"próximo lote o no. Si se establece como «1» y se asume que la transacción se "
+"ha autorizado, se liquidará automáticamente en el próximo lote. Si se "
+"establece como «0», el comercio debe utilizar Información de gestión para "
+"liquidarla manualmente. Esta opción pueden utilizarla los comercios que "
+"deseen posponer el pago hasta que se haya enviado el artículo adquirido. Se "
+"puede liquidar hasta un 115 % del importe original de la transacción en un "
+"período de tiempo concreto acordado con el banco emisor."
