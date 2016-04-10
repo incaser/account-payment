@@ -10,8 +10,6 @@ class TestAccountPaymentReturnImport(TransactionCase):
     def setUp(self):
         super(TestAccountPaymentReturnImport, self).setUp()
         self.return_import_model = self.env['payment.return.import']
-        self.account_journal_model = self.env['account.journal']
-
         self.company = self.env.ref('base.main_company')
         self.acc_number = 'NL77ABNA0574908765'
         self.acc_bank = self.env['res.partner.bank'].create({

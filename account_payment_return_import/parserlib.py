@@ -17,16 +17,6 @@ class ReturnTransaction(dict):
         self['date'] = value_date
 
     @property
-    def name(self):
-        """property getter"""
-        return self['name']
-
-    @name.setter
-    def name(self, name):
-        """property setter"""
-        self['name'] = name
-
-    @property
     def returned_amount(self):
         """property getter"""
         return self['amount']
@@ -55,7 +45,6 @@ class ReturnTransaction(dict):
     def concept(self, concept):
         """property setter"""
         self['concept'] = concept
-        self.name = concept
 
     @property
     def remote_owner(self):
@@ -66,8 +55,6 @@ class ReturnTransaction(dict):
     def remote_owner(self, remote_owner):
         """property setter"""
         self['partner_name'] = remote_owner
-        if not (self.concept or self.reference):
-            self.name = remote_owner
 
     @property
     def remote_account(self):

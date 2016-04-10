@@ -68,7 +68,8 @@ class TestPaymentReturnFile(TransactionCase):
         )
         bank_return_id.import_file()
         if local_account:
-            journal_id = import_model._get_journal(local_account)
+            bank_account_id = import_model._find_bank_account_id(local_account)
+            journal_id = import_model._get_journal(bank_account_id)
             self.assertTrue(
                 journal_id,
                 'Bank account %s has not journal assigned' % local_account

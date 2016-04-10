@@ -9,6 +9,17 @@ from openerp.addons.account_payment_return_import.tests import (
 class TestImport(TestPaymentReturnFile):
     """Run test to import payment return import."""
 
+    def setUp(self):
+        super(TestImport, self).setUp()
+        self.company = self.env.ref('base.main_company')
+        self.acc_number = 'NL77ABNA0574908765'
+        self.acc_bank = self.env['res.partner.bank'].create({
+            'state': 'iban',
+            'acc_number': self.acc_number,
+            'bank_name': 'TEST BANK',
+            'company_id': self.company.partner_id.id,
+        })
+
     def test_payment_return_import(self):
         """Test correct creation of single payment return."""
         transactions = [
@@ -19,7 +30,7 @@ class TestImport(TestPaymentReturnFile):
         ]
         self._test_return_import(
             'account_payment_return_import_sepa_pain', 'test-sepa-unpaid.xml',
-            'MSGID12345678912',
+            'MSGID99345678912',
             local_account='NL77ABNA0574908765',
             date='2016-10-08', transactions=transactions
         )
@@ -28,7 +39,7 @@ class TestImport(TestPaymentReturnFile):
         """Test import of multiple statements from zip file."""
         self._test_return_import(
             'account_payment_return_import_sepa_pain', 'test-sepa-unpaid.zip',
-            'MSGID12345678912',
+            'MSGID99345678912',
             local_account='NL77ABNA0574908765',
             date='2016-10-08'
         )

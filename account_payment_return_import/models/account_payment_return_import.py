@@ -53,9 +53,9 @@ class PaymentReturnImport(models.TransientModel):
         string='Hide the journal field in the view',
         compute='_get_hide_journal_field')
     data_file = fields.Binary(
-        'Bank Statement File', required=True,
-        help='Get you bank payment returns in electronic format from your bank'
-        ' and select them here.')
+        'Payment Return File', required=True,
+        help='Get you bank payment returns in electronic format from your '
+             'bank and select them here.')
 
     @api.multi
     def import_file(self):
@@ -162,7 +162,6 @@ class PaymentReturnImport(models.TransientModel):
             - 'name': string (e.g: '000000123')
             - 'date': date (e.g: 2013-06-26)
             - 'transactions': list of dict containing :
-                - 'name': string
                 - 'amount': float
                 - 'unique_import_id': string
                 -o 'concept': string
@@ -236,7 +235,7 @@ class PaymentReturnImport(models.TransientModel):
                 )
             if not line_vals.get('reason'):
                 reason = self.env['payment.return.reason'].name_search(
-                    line_vals.get('reason_code'))
+                    line_vals.pop('reason_code'))
                 if reason:
                     line_vals['reason'] = reason[0][0]
         if 'date' in payret_vals and 'period_id' not in payret_vals:
