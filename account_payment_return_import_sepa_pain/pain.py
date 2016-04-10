@@ -84,7 +84,7 @@ class PainParser(object):
         payment_return = PaymentReturn()
         self.add_value_from_node(
             ns, node, './ns:GrpHdr/ns:MsgId', payment_return,
-            'payment_return_id')
+            'payment_return_name')
         payment_return.date = self.parse_date(ns, node)
         transaction_nodes = node.xpath(
             './ns:OrgnlPmtInfAndSts/ns:TxInfAndSts', namespaces={'ns': ns})
@@ -134,7 +134,6 @@ class PainParser(object):
         ns = root.tag[1:root.tag.index("}")]
         self.check_version(ns, root)
         payment_returns = []
-        # for node in root[0][2:]:
         for node in root:
             payment_return = self.parse_payment_return(ns, node)
             if len(payment_return['transactions']):

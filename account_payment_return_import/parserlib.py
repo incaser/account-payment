@@ -110,6 +110,8 @@ class ReturnTransaction(dict):
         self.move_line_ids = False  # related move with original ref
         self.remote_owner = False  # name of the other party
         self.remote_bank_bic = False  # bic of other party's bank
+        self.value_date = False  # Date at which the creditor requests that the
+        # amount of money is to be collected from the debtor.
         self.error_message = False  # error message for interaction with user
         self.data = ''  # Raw data from which the transaction has been parsed
 
@@ -118,22 +120,22 @@ class PaymentReturn(dict):
     """A bank payment_return groups data about several bank transactions."""
 
     @property
-    def payment_return_id(self):
+    def payment_return_name(self):
         """property getter"""
         return self['name']
 
     def _set_transaction_ids(self):
-        """Set transaction ids to payment_return_id with sequence-number."""
+        """Set transaction ids to payment_return_name with sequence-number."""
         subno = 0
         for transaction in self['transactions']:
             subno += 1
             transaction['unique_import_id'] = (
-                self.payment_return_id + str(subno).zfill(4))
+                self.payment_return_name + str(subno).zfill(4))
 
-    @payment_return_id.setter
-    def payment_return_id(self, payment_return_id):
+    @payment_return_name.setter
+    def payment_return_name(self, payment_return_name):
         """property setter"""
-        self['name'] = payment_return_id
+        self['name'] = payment_return_name
         self._set_transaction_ids()
 
     @property
@@ -158,20 +160,20 @@ class PaymentReturn(dict):
 
     def create_transaction(self):
         """Create and append transaction.
-        This should only be called after payment_return_id has been set,
-        because payment_return_id will become part of the unique
+        This should only be called after payment_return_name has been set,
+        because payment_return_name will become part of the unique
         transaction_id.
         """
         transaction = ReturnTransaction()
         self['transactions'].append(transaction)
         # Fill default id, but might be overruled
         transaction['unique_import_id'] = (
-            self.payment_return_id + str(len(self['transactions'])).zfill(4))
+            self.payment_return_name + str(len(self['transactions'])).zfill(4))
         return transaction
 
     def __init__(self):
         super(PaymentReturn, self).__init__()
         self['transactions'] = []
-        self.payment_return_id = ''
+        self.payment_return_name = ''
         self.date = False
         self.local_account = False

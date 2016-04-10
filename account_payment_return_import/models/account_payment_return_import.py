@@ -68,22 +68,20 @@ class PaymentReturnImport(models.TransientModel):
             active_id=self.id  # pylint: disable=no-member
         )._import_file(data_file)
         # dispatch to reconciliation interface
-        action = self.env.ref(
-            'account_payment_return.payment_return_action')
-        return {
-            'name': action.name,
-            # 'tag': action.tag,
-            'context': {
-                'payment_return_ids': payment_return_ids,
-                'notifications': notifications
-            },
-            'type': 'ir.actions.client',
-        }
+        result = self.env.ref(
+            'account_payment_return.payment_return_action').read()[0]
+        if len(payment_return_ids) != 1:
+            result['domain'] = "[('id', 'in', %s)]" % payment_return_ids
+        else:
+            res = self.env.ref(
+                'account_payment_return.payment_return_form_view', False)
+            result['views'] = [(res and res.id or False, 'form')]
+            result['res_id'] = payment_return_ids[0]
+        return result
 
     @api.model
     def _parse_all_files(self, data_file):
         """Parse one file or multiple files from zip-file.
-
         Return array of payment returns for further processing.
         """
         payment_returns = []
@@ -145,7 +143,7 @@ class PaymentReturnImport(models.TransientModel):
         payret_vals = self._complete_payment_return(
             payret_vals, journal_id, account_number)
         # Create the bank payret_vals
-        return self._create_bank_payment_return(payret_vals)
+        return self._create_payment_return(payret_vals)
 
     @api.model
     def _parse_file(self, data_file):
@@ -183,7 +181,8 @@ class PaymentReturnImport(models.TransientModel):
         # pylint: disable=no-self-use
         """ Basic and structural verifications """
         if len(payment_returns) == 0:
-            raise UserError(_('This file doesn\'t contain any paymentreturn.'))
+            raise UserError(_(
+                'This file doesn\'t contain any payment return.'))
         for payret_vals in payment_returns:
             if 'transactions' in payret_vals and payret_vals['transactions']:
                 return
@@ -224,7 +223,8 @@ class PaymentReturnImport(models.TransientModel):
         return journal_id
 
     @api.model
-    def _complete_payment_return(self, payret_vals, journal_id, account_number):
+    def _complete_payment_return(
+            self, payret_vals, journal_id, account_number):
         """Complete payment return from information passed."""
         payret_vals['journal_id'] = journal_id
         for line_vals in payret_vals['transactions']:
@@ -253,7 +253,7 @@ class PaymentReturnImport(models.TransientModel):
         return payret_vals
 
     @api.model
-    def _create_bank_payment_return(self, payret_vals):
+    def _create_payment_return(self, payret_vals):
         """ Create bank payment return from imported values, filtering out
         already imported transactions, and return data used by the
         reconciliation widget

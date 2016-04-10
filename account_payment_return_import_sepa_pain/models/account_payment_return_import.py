@@ -6,7 +6,6 @@ import logging
 from openerp import api, models
 from openerp.addons.account_payment_return_import_sepa_pain.pain \
     import PainParser
-# from .pain import PainParser
 
 _logger = logging.getLogger(__name__)
 

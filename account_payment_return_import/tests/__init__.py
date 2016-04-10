@@ -1,3 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 
-from . import test_account_payment_return_import
+from . import test_import_payment_return
+from .test_import_file import TestPaymentReturnFile

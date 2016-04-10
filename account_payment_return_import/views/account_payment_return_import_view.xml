@@ -38,7 +38,9 @@
             <field name="view_id" ref="account_payment_return_import_view"/>
         </record>
 
-        <menuitem id="menu_account_payment_return_import" parent="account.menu_finance_bank_and_cash" action="action_account_payment_return_import" sequence="8"/>
+        <menuitem id="menu_account_payment_return_import"
+                  parent="account.menu_finance_receivables"
+                  action="action_account_payment_return_import" sequence="22"/>
 
     </data>
 </openerp>
